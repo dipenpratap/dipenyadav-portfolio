@@ -1,17 +1,46 @@
 @import "tailwindcss";
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+@theme inline {
+  --color-ink: #080f1a;
+  --color-ink-2: #0d1726;
+  --color-brand: #e0513f;
+  --color-brand-deep: #c0392b;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
 
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 body {
+  font-family: var(--font-serif);
+  background: #f7f8fa;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+::selection { background: rgba(192, 57, 43, 0.25); color: inherit; }
+
+:focus-visible { outline: 2px solid #e0513f; outline-offset: 3px; border-radius: 4px; }
+
+/* Staggered reveal: only hidden when scripting runs, so no-JS users see content. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  [data-reveal][data-in] { opacity: 1; transform: none; }
 }
 
-html { scroll-behavior: smooth; }
+[data-magnetic], [data-tilt] { will-change: transform; }
 
-::selection {
-  background: rgba(192, 57, 43, 0.2);
-  color: inherit;
+.hero-glow {
+  position: absolute; left: 0; top: 0; width: 520px; height: 520px; margin: -260px 0 0 -260px;
+  border-radius: 9999px; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle, rgba(224, 81, 63, 0.22), transparent 65%);
+  transition: opacity 0.4s;
 }
+[data-glow-active] .hero-glow { opacity: 1; }
 
-a { transition: color 0.2s, opacity 0.2s; }
+@keyframes queue-pulse { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+.pulse { animation: queue-pulse 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .pulse { animation: none; } html { scroll-behavior: auto; } }

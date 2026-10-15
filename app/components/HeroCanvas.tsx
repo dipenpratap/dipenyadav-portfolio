@@ -145,5 +145,5 @@ export default function HeroCanvas() {
     return () => { cancelAnimationFrame(raf); clearInterval(spawn); window.removeEventListener('resize', resize); };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} />;
+  return <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 h-full w-full" />;
 }
