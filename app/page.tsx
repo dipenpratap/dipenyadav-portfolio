@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { HeroCanvasLazy } from './components/HeroCanvasLazy';
 import { Interactions } from './components/Interactions';
 import { Nav } from './components/Nav';
+import { EmailLink } from './components/EmailLink';
 import { PhoneMockup, PosMockup, QueueMockup } from './components/Mockups';
 import { AWS_CERTS, BUILT, COMPETENCIES, EXPERIENCE, HIGHLIGHTS, NAV_STATS, OTHER_CERTS, SKILLS } from './data';
 
@@ -284,7 +285,7 @@ export default function Home() {
                 Available for select roles and advisory: product-minded engineering, data platforms and early-stage SaaS.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
-                <a data-magnetic="0.35" href="mailto:dipen.p.yadav@gmail.com" className={`${BTN_PRIMARY} break-all`}>dipen.p.yadav@gmail.com</a>
+                <EmailLink className={`${BTN_PRIMARY} break-all`} />
                 <a data-magnetic="0.35" href="https://github.com/dipenpratap" target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>GitHub ↗</a>
                 <a data-magnetic="0.35" href="https://queuella.com" target="_blank" rel="noopener noreferrer" className={BTN_GHOST}>queuella.com ↗</a>
               </div>
